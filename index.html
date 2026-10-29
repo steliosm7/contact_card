@@ -155,11 +155,11 @@
   if (!C.degrees) $("degrees").remove();
   if (!C.uni) $("uni").remove();
 
-  const rows = [
+ const rows = [
     C.phone    && { k: "phone",    label: "Κινητό",         text: C.phone, href: "tel:" + C.phone.replace(/\s/g, "") },
     C.email    && { k: "mail",     label: "Email",          text: C.email, href: "mailto:" + C.email },
-    C.linkedin && { k: "linkedin", label: "LinkedIn",       text: "steliosm", href: C.linkedin, ext: true },
-    C.scholar  && { k: "scholar",  label: "Google Scholar", text: "Προφίλ Ερευνητή", href: C.scholar, ext: true }
+    C.linkedin && { k: "linkedin", label: "LinkedIn",       text: C.linkedin.replace(/^https?:\/\/(www\.)?/, ""), href: C.linkedin, ext: true },
+    C.scholar  && { k: "scholar",  label: "Google Scholar", text: C.scholar.replace(/^https?:\/\/(www\.)?/, ""), href: C.scholar, ext: true }
   ].filter(Boolean);
 
   $("links").innerHTML = rows.map(r => `
