@@ -155,12 +155,21 @@
   if (!C.degrees) $("degrees").remove();
   if (!C.uni) $("uni").remove();
 
- const rows = [
-    C.phone    && { k: "phone",    label: "Κινητό",         text: C.phone, href: "tel:" + C.phone.replace(/\s/g, "") },
-    C.email    && { k: "mail",     label: "Email",          text: C.email, href: "mailto:" + C.email },
-    C.linkedin && { k: "linkedin", label: "LinkedIn",       text: C.linkedin.replace(/^https?:\/\/(www\.)?/, ""), href: C.linkedin, ext: true },
-    C.scholar  && { k: "scholar",  label: "Google Scholar", text: C.scholar.replace(/^https?:\/\/(www\.)?/, ""), href: C.scholar, ext: true }
+const rows = [
+    C.phone    && { k: "phone",    label: "Κινητό", text: C.phone, href: "tel:" + C.phone.replace(/\s/g, "") },
+    C.email    && { k: "mail",     label: "Email",  text: C.email, href: "mailto:" + C.email },
+    C.linkedin && { k: "linkedin", label: "",       text: C.linkedin.replace(/^https?:\/\/(www\.)?/, ""), href: C.linkedin, ext: true },
+    C.scholar  && { k: "scholar",  label: "",       text: C.scholar.replace(/^https?:\/\/(www\.)?/, ""), href: C.scholar, ext: true }
   ].filter(Boolean);
+
+  $("links").innerHTML = rows.map(r => `
+    <li><a href="${r.href}" ${r.ext ? 'target="_blank" rel="noopener"' : ""}>
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${icons[r.k]}</svg></span>
+      <span class="meta">
+        ${r.label ? `<small>${r.label}</small>` : ""}
+        <span>${r.text}</span>
+      </span>
+    </a></li>`).join("");
 
   $("links").innerHTML = rows.map(r => `
     <li><a href="${r.href}" ${r.ext ? 'target="_blank" rel="noopener"' : ""}>
