@@ -2,8 +2,8 @@
 <html lang="el">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0e1014">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#2b384a">
 <title>Στυλιανός Μηλιαράκης</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,49 +20,61 @@
     --accent-ink: #0b1030;
   }
   * { box-sizing: border-box; }
-  html, body { margin: 0; min-height: 100%; }
+  html, body { 
+    margin: 0; 
+    min-height: 100%; 
+    overflow-x: hidden; 
+  }
   body {
     font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background: var(--bg);
     color: var(--text);
-    display: grid;
-    place-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     min-height: 100vh;
-    padding: max(24px, env(safe-area-inset-top)) 20px max(24px, env(safe-area-inset-bottom));
+    padding: max(20px, env(safe-area-inset-top)) 0 max(20px, env(safe-area-inset-bottom)) 0;
     -webkit-font-smoothing: antialiased;
   }
+  
+  /* ΕΔΩ ΕΓΙΝΕ Η ΔΙΟΡΘΩΣΗ ΤΟΥ ΠΛΑΙΣΙΟΥ */
   .card {
-    width: 100%;
-    max-width: 380px;
+    width: calc(100% - 40px); /* Εξασφαλίζει πάντα 20px κενό αριστερά-δεξιά */
+    max-width: 340px; /* Πιο "σφιχτό" και κομψό για οθόνες iPhone */
+    margin: 20px auto;
     background: var(--surface);
     border: 1px solid var(--line);
-    border-radius: 28px;
-    padding: 32px 28px 12px;
+    border-radius: 24px; /* Ελαφρώς πιο κοφτερές γωνίες */
+    padding: 32px 20px 16px; /* Προσαρμοσμένα εσωτερικά κενά για καλύτερη αναλογία */
     animation: rise .6s cubic-bezier(.2,.7,.2,1) both;
+    text-align: center;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25); /* Προσθέτει βάθος για να ξεχωρίζει από το φόντο */
   }
+
   .avatar {
-    width: 88px; height: 88px;
+    width: 80px; height: 80px; /* Ελαφρώς μικρότερο για να ταιριάζει με το νέο πλαίσιο */
     border-radius: 50%;
     display: grid; place-items: center;
-    font-weight: 800; font-size: 30px; letter-spacing: .02em;
+    font-weight: 800; font-size: 26px; letter-spacing: .02em;
     color: var(--accent);
     background: var(--bg);
     border: 2px solid var(--accent);
     box-shadow: 0 0 0 6px var(--surface), 0 0 0 7px var(--line);
     overflow: hidden;
-    margin: 4px 0 28px;
+    margin: 4px auto 24px auto;
   }
   .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  h1 { margin: 0; font-size: 26px; line-height: 1.15; font-weight: 800; letter-spacing: -.02em; }
-  .role { margin: 8px 0 0; color: var(--accent); font-size: 15px; font-weight: 600; }
-  .degrees { margin: 6px 0 0; color: var(--muted); font-size: 14px; font-weight: 500; }
-  .uni { margin: 2px 0 0; color: var(--muted); font-size: 13px; opacity: .7; }
+  h1 { margin: 0; font-size: 22px; line-height: 1.2; font-weight: 800; letter-spacing: -.02em; }
+  .role { margin: 8px 0 0; color: var(--accent); font-size: 14px; font-weight: 600; text-wrap: balance; line-height: 1.4; }
+  .degrees { margin: 6px 0 0; color: var(--muted); font-size: 13px; font-weight: 500; text-wrap: balance; line-height: 1.4; }
+  .uni { margin: 2px 0 0; color: var(--muted); font-size: 12px; opacity: .7; }
 
   .save {
-    margin: 28px 0 8px;
+    margin: 24px 0 12px;
     width: 100%;
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    padding: 15px 20px;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 14px 20px;
     border: 0; border-radius: 16px;
     background: var(--accent); color: var(--accent-ink);
     font: 700 15px "Manrope", sans-serif;
@@ -73,24 +85,25 @@
   .save:active { transform: scale(.98); }
   .save svg { width: 18px; height: 18px; }
 
-  .links { list-style: none; margin: 8px 0 0; padding: 0; }
+  .links { list-style: none; margin: 8px 0 0; padding: 0; text-align: left; }
   .links li + li { border-top: 1px solid var(--line); }
   .links a {
-    display: flex; align-items: center; gap: 16px;
-    padding: 16px 4px;
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 4px;
     color: var(--text); text-decoration: none;
     transition: color .15s ease;
+    width: 100%;
   }
   .links a:hover { color: var(--accent); }
   .ico {
-    flex: none; width: 40px; height: 40px;
+    flex: none; width: 38px; height: 38px;
     border-radius: 12px; background: var(--bg); border: 1px solid var(--line);
     display: grid; place-items: center; color: var(--accent);
   }
   .ico svg { width: 18px; height: 18px; }
-  .meta { display: flex; flex-direction: column; min-width: 0; }
+  .meta { display: flex; flex-direction: column; min-width: 0; flex: 1; }
   .meta small { color: var(--muted); font-size: 12px; font-weight: 500; }
-  .meta span { font-size: 14px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .meta span { font-size: 14px; font-weight: 600; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 100%; }
 
   a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 12px; }
   @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
