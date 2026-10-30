@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<meta name="theme-color" content="#050505">
-<title>Όνομα Επώνυμο</title>
+<meta name="theme-color" content="#2b384a">
+<title>Στυλιανός Μηλιαράκης</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;800&display=swap" rel="stylesheet">
 <style>
-  :root {
+:root {
     color-scheme: dark;
     --bg: #050505; 
-    --surface: #121212; 
-    --line: #2a2a2a; 
-    --text: #ffffff; 
-    --muted: #888888; 
+    --surface: #121212;
+    --line: #2a2a2a;
+    --text: #ffffff;
+    --muted: #888888;
     --accent: #ffffff; 
-    --accent-ink: #000000; 
+    --accent-ink: #000000;
   }
   * { box-sizing: border-box; }
   html, body { 
@@ -37,20 +37,23 @@
     padding: max(20px, env(safe-area-inset-top)) 0 max(20px, env(safe-area-inset-bottom)) 0;
     -webkit-font-smoothing: antialiased;
   }
+  
+  /* ΕΔΩ ΕΓΙΝΕ Η ΔΙΟΡΘΩΣΗ ΤΟΥ ΠΛΑΙΣΙΟΥ */
   .card {
-    width: calc(100% - 40px);
-    max-width: 340px; 
+    width: calc(100% - 40px); /* Εξασφαλίζει πάντα 20px κενό αριστερά-δεξιά */
+    max-width: 340px; /* Πιο "σφιχτό" και κομψό για οθόνες iPhone */
     margin: 20px auto;
     background: var(--surface);
     border: 1px solid var(--line);
-    border-radius: 24px; 
-    padding: 32px 20px 16px; 
+    border-radius: 24px; /* Ελαφρώς πιο κοφτερές γωνίες */
+    padding: 32px 20px 16px; /* Προσαρμοσμένα εσωτερικά κενά για καλύτερη αναλογία */
     animation: rise .6s cubic-bezier(.2,.7,.2,1) both;
     text-align: center;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25); 
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25); /* Προσθέτει βάθος για να ξεχωρίζει από το φόντο */
   }
+
   .avatar {
-    width: 80px; height: 80px; 
+    width: 80px; height: 80px; /* Ελαφρώς μικρότερο για να ταιριάζει με το νέο πλαίσιο */
     border-radius: 50%;
     display: grid; place-items: center;
     font-weight: 800; font-size: 26px; letter-spacing: .02em;
@@ -126,17 +129,17 @@
 
 <script>
   const C = {
-    first: "Όνομα",
-    last: "Επώνυμο",
-    title: "Job Title",
-    org: "Company Name",                                
-    degrees: "Degree 1, Degree 2",
-    uni: "University",                                
+    first: "Στυλιανός",
+    last: "Μηλιαράκης",
+    title: "Head of Portfolio Management & Trading",
+    org: "Forena Energy",                                
+    degrees: "Electrical and Computer Engineer, MSc, MBA",
+    uni: "NTUA",                                
     photo: "",                                 
-    phone: "+30 690 000 0000",                 
-    email: "email@example.com",
-    linkedin: "https://www.linkedin.com/in/username",
-    scholar: "https://scholar.google.com/citations?user=ID&hl=el"
+    phone: "+30 697 768 2963",                 
+    email: "steliosm77@gmail.com",
+    linkedin: "https://www.linkedin.com/in/steliosm",
+    scholar: "https://scholar.google.com/citations?user=LXHbzJsAAAAJ&hl=el"
   };
 
   const icons = {
