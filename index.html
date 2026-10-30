@@ -38,22 +38,21 @@
     -webkit-font-smoothing: antialiased;
   }
   
-  /* ΕΔΩ ΕΓΙΝΕ Η ΔΙΟΡΘΩΣΗ ΤΟΥ ΠΛΑΙΣΙΟΥ */
   .card {
-    width: calc(100% - 40px); /* Εξασφαλίζει πάντα 20px κενό αριστερά-δεξιά */
-    max-width: 340px; /* Πιο "σφιχτό" και κομψό για οθόνες iPhone */
+    width: calc(100% - 40px);
+    max-width: 340px;
     margin: 20px auto;
     background: var(--surface);
     border: 1px solid var(--line);
-    border-radius: 24px; /* Ελαφρώς πιο κοφτερές γωνίες */
-    padding: 32px 20px 16px; /* Προσαρμοσμένα εσωτερικά κενά για καλύτερη αναλογία */
+    border-radius: 24px;
+    padding: 32px 20px 16px; 
     animation: rise .6s cubic-bezier(.2,.7,.2,1) both;
     text-align: center;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25); /* Προσθέτει βάθος για να ξεχωρίζει από το φόντο */
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
   }
 
   .avatar {
-    width: 80px; height: 80px; /* Ελαφρώς μικρότερο για να ταιριάζει με το νέο πλαίσιο */
+    width: 80px; height: 80px; 
     border-radius: 50%;
     display: grid; place-items: center;
     font-weight: 800; font-size: 26px; letter-spacing: .02em;
@@ -169,7 +168,7 @@
   if (!C.uni) $("uni").remove();
 
   const rows = [
-    C.phone    && { k: "phone",    label: "Mobile Phone", text: C.phone, href: "tel:" + C.phone.replace(/\s/g, "") },
+    C.phone    && { k: "phone",    label: "Mobile", text: C.phone, href: "tel:" + C.phone.replace(/\s/g, "") },
     C.email    && { k: "mail",     label: "Email",  text: C.email, href: "mailto:" + C.email },
     C.linkedin && { k: "linkedin", label: "",       text: C.linkedin.replace(/^https?:\/\/(www\.)?/, ""), href: C.linkedin, ext: true },
     C.scholar  && { k: "scholar",  label: "",       text: C.scholar.replace(/^https?:\/\/(www\.)?/, "").split("&")[0], href: C.scholar, ext: true }
