@@ -13,23 +13,20 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;800&display=swap" rel="stylesheet">
 <style>
-  :root {
+    :root {
     color-scheme: dark;
-    --bg: #010305; 
-    --surface: #02070A; /* Midnight Black */
-    --line: #16242e; 
-    --text: #ffffff; 
-    --muted: #7a8b99; 
-    --accent: #0297DE; /* Electric Blue για εικονίδια, ρόλο & avatar */
-    --accent-cta: #FC734D; /* Cantaloupe Orange αποκλειστικά για το κουμπί */
-    --accent-cta-ink: #02070A; /* Midnight Black για το κείμενο μέσα στο πορτοκαλί κουμπί */
+    --bg: #010305; /* Ελάχιστα πιο σκοτεινό από το Midnight Black για να κάνει αντίθεση η κάρτα */
+    --surface: #02070A; /* Midnight Black για το φόντο της κάρτας */
+    --line: #16242e; /* Πολύ σκούρα μπλε-γκρι γραμμή για διαχωρισμό */
+    --text: #ffffff; /* Καθαρό λευκό για τα κείμενα */
+    --muted: #7a8b99; /* Απαλό γκρι-μπλε για την εκπαίδευση (ταιριάζει με το μπλε θέμα) */
+    --accent: #0297DE; /* Electric Blue για το κεντρικό κουμπί και τα εικονίδια */
+    --accent-ink: #ffffff; /* Λευκά γράμματα μέσα στο Electric Blue κουμπί */
+    
+    /* Σημείωση: Αν προτιμάς το Cantaloupe Orange (#FC734D), απλά άλλαξε 
+       την τιμή του --accent παραπάνω σε #FC734D */
   }
-  * { box-sizing: border-box; }
-  html, body { 
-    margin: 0; 
-    min-height: 100%; 
-    overflow-x: hidden; 
-  }
+
   body {
     font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background: var(--bg);
