@@ -15,13 +15,14 @@
 <style>
   :root {
     color-scheme: dark;
-    --bg: #010305; /* Ελάχιστα πιο σκοτεινό από το Midnight Black για να κάνει αντίθεση η κάρτα */
-    --surface: #02070A; /* Midnight Black για το φόντο της κάρτας */
-    --line: #16242e; /* Πολύ σκούρα μπλε-γκρι γραμμή για διαχωρισμό */
-    --text: #ffffff; /* Καθαρό λευκό για τα κείμενα */
-    --muted: #7a8b99; /* Απαλό γκρι-μπλε για την εκπαίδευση (ταιριάζει με το μπλε θέμα) */
-    --accent: #0297DE; /* Electric Blue για το κεντρικό κουμπί και τα εικονίδια */
-    --accent-ink: #ffffff; 
+    --bg: #010305; 
+    --surface: #02070A; /* Midnight Black */
+    --line: #16242e; 
+    --text: #ffffff; 
+    --muted: #7a8b99; 
+    --accent: #0297DE; /* Electric Blue για εικονίδια, ρόλο & avatar */
+    --accent-cta: #FC734D; /* Cantaloupe Orange αποκλειστικά για το κουμπί */
+    --accent-cta-ink: #02070A; /* Midnight Black για το κείμενο μέσα στο πορτοκαλί κουμπί */
   }
   * { box-sizing: border-box; }
   html, body { 
@@ -79,7 +80,8 @@
     display: flex; align-items: center; justify-content: center; gap: 8px;
     padding: 14px 20px;
     border: 0; border-radius: 16px;
-    background: var(--accent); color: var(--accent-ink);
+    background: var(--accent-cta); 
+    color: var(--accent-cta-ink);
     font: 700 15px "Manrope", sans-serif;
     cursor: pointer;
     transition: transform .15s ease, filter .15s ease;
@@ -112,6 +114,7 @@
   @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
   @media (prefers-reduced-motion: reduce) { .card { animation: none; } .save { transition: none; } }
 </style>
+
 </head>
 <body>
 
