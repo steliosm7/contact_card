@@ -6,10 +6,10 @@
 <meta name="theme-color" content="#010305">
 <meta name="robots" content="noindex, nofollow">
 <title>Stylianos Miliarakis</title>
-<meta name="description" content="Head of Portfolio Management &amp; Trading — digital contact card">
+<meta name="description" content="Head of Portfolio Management & Trading — digital contact card">
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Stylianos Miliarakis">
-<meta property="og:description" content="Head of Portfolio Management &amp; Trading — digital contact card">
+<meta property="og:description" content="Head of Portfolio Management & Trading — digital contact card">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;800&display=swap" rel="stylesheet">
@@ -38,15 +38,25 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100dvh;
+    min-height: 100vh;
+    min-height: 100svh;
     padding: max(20px, env(safe-area-inset-top)) 0 max(20px, env(safe-area-inset-bottom)) 0;
     -webkit-font-smoothing: antialiased;
   }
   
+  /* glow: αλλάζει το rgba αν αλλάξεις το --accent */
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(60% 45% at 50% 0%, rgba(2,151,222,.20), transparent 70%),
+      radial-gradient(50% 35% at 50% 100%, rgba(2,151,222,.08), transparent 70%);
+  }
   .card {
     width: calc(100% - 40px);
     max-width: 340px;
-    margin: 0px auto;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 24px;
@@ -64,158 +74,11 @@
     color: var(--accent);
     background: var(--bg);
     border: 2px solid var(--accent);
-    box-shadow: 0 0 0 6px var(--surface), 0 0 0 7px var(--line);
+    box-shadow: 0 0 0 6px var(--surface), 0 0 0 7px var(--line), 0 0 32px rgba(2,151,222,.28);
     overflow: hidden;
     margin: 4px auto 24px auto;
   }
   .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
   h1 { margin: 0; font-size: 22px; line-height: 1.2; font-weight: 800; letter-spacing: -.02em; }
   .role { margin: 8px 0 0; color: var(--accent); font-size: 14px; font-weight: 600; text-wrap: balance; line-height: 1.4; }
-  .degrees { margin: 6px 0 0; color: var(--muted); font-size: 13px; font-weight: 500; text-wrap: balance; line-height: 1.4; }
-  .uni { margin: 2px 0 0; color: var(--muted); font-size: 12px; }
-
-  .save {
-    margin: 24px 0 12px;
-    width: 100%;
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-    padding: 14px 20px;
-    border: 0; border-radius: 16px;
-    background: var(--accent); color: var(--accent-ink);
-    font: 700 15px "Manrope", sans-serif;
-    cursor: pointer;
-    transition: transform .15s ease, filter .15s ease;
-  }
-  .save:hover { filter: brightness(1.08); }
-  .save:active { transform: scale(.98); }
-  .save svg { width: 18px; height: 18px; }
-
-  .links { list-style: none; margin: 8px 0 0; padding: 0; text-align: left; }
-  .links li + li { border-top: 1px solid var(--line); }
-  .links a {
-    display: flex; align-items: center; gap: 14px;
-    padding: 14px 4px;
-    color: var(--text); text-decoration: none;
-    transition: color .15s ease;
-    width: 100%;
-  }
-  .links a:hover { color: var(--accent); }
-  .ico {
-    flex: none; width: 38px; height: 38px;
-    border-radius: 12px; background: var(--bg); border: 1px solid var(--line);
-    display: grid; place-items: center; color: var(--accent);
-  }
-  .ico svg { width: 18px; height: 18px; }
-  .meta { display: flex; flex-direction: column; min-width: 0; flex: 1; }
-  .meta small { color: var(--muted); font-size: 12px; font-weight: 500; }
-  .meta span { font-size: 14px; font-weight: 600; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 100%; }
-
-  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 12px; }
-  @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
-  @media (prefers-reduced-motion: reduce) { .card { animation: none; } .save { transition: none; } }
-</style>
-</head>
-<body>
-
-<main class="card">
-  <div class="avatar" id="avatar"></div>
-  <h1 id="name"></h1>
-  <p class="role" id="role"></p>
-  <p class="degrees" id="degrees"></p>
-  <p class="uni" id="uni"></p>
-
-  <button class="save" id="save" type="button">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg>
-    Save Contact
-  </button>
-
-  <ul class="links" id="links"></ul>
-</main>
-
-<script>
-  const C = {
-    first: "Stylianos",
-    last: "Miliarakis",
-    title: "Head of Portfolio Management & Trading",
-    org: "Forena Energy",                                
-    degrees: "Electrical and Computer Engineer, MSc, MBA",
-    uni: "NTUA",                                
-    photo: "",                                 
-    phone: "+30 697 768 2963",                 
-    email: "steliosm77@gmail.com",
-    linkedin: "https://www.linkedin.com/in/steliosm",
-    scholar: "https://scholar.google.com/citations?user=LXHbzJsAAAAJ&hl=el"
-  };
-
-  const icons = {
-    phone: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/>',
-    mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
-    linkedin: '<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>',
-    scholar: '<path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>'
-  };
-
-  const $ = id => document.getElementById(id);
-  const fullName = `${C.first} ${C.last}`;
-  const initials = (C.first[0] + C.last[0]).toUpperCase();
-  document.title = fullName;
-
-  const fav = document.createElement("link");
-  fav.rel = "icon";
-  fav.href = "data:image/svg+xml," + encodeURIComponent(
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#050505"/><text x="32" y="42" font-family="Arial" font-weight="800" font-size="28" text-anchor="middle" fill="#fff">${initials}</text></svg>`
-  );
-  document.head.appendChild(fav);
-
-  if (C.photo) {
-    const img = document.createElement("img");
-    img.src = C.photo; img.alt = fullName;
-    $("avatar").appendChild(img);
-  } else {
-    $("avatar").textContent = initials;
-  }
-
-  $("name").textContent = fullName;
-  $("role").textContent = C.org ? `${C.title} · ${C.org}` : C.title;
-  $("degrees").textContent = C.degrees || "";
-  $("uni").textContent = C.uni || "";
-  if (!C.degrees) $("degrees").remove();
-  if (!C.uni) $("uni").remove();
-
-  const rows = [
-    C.phone    && { k: "phone",    label: "Mobile", text: C.phone, href: "tel:" + C.phone.replace(/\s/g, "") },
-    C.email    && { k: "mail",     label: "Email",  text: C.email, href: "mailto:" + C.email },
-    C.linkedin && { k: "linkedin", label: "LinkedIn",       text: C.linkedin.replace(/^https?:\/\/(www\.)?/, ""), href: C.linkedin, ext: true },
-    C.scholar  && { k: "scholar",  label: "Google Scholar", text: "Publications", href: C.scholar, ext: true }
-  ].filter(Boolean);
-
-  $("links").innerHTML = rows.map(r => `
-    <li><a href="${r.href}" ${r.ext ? 'target="_blank" rel="noopener"' : ""}>
-      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${icons[r.k]}</svg></span>
-      <span class="meta">
-        ${r.label ? `<small>${r.label}</small>` : ""}
-        <span>${r.text}</span>
-      </span>
-    </a></li>`).join("");
-
-  // vCard: escape \ , ; so imports don't truncate fields
-  const esc = s => String(s).replace(/([\\,;])/g, "\\$1");
-
-  $("save").addEventListener("click", () => {
-    const note = [C.degrees, C.uni].filter(Boolean).join(" - ");
-    const L = [
-      "BEGIN:VCARD", "VERSION:3.0",
-      `N:${esc(C.last)};${esc(C.first)};;;`, `FN:${esc(fullName)}`,
-      C.org && `ORG:${esc(C.org)}`, C.title && `TITLE:${esc(C.title)}`,
-      C.phone && `TEL;TYPE=CELL:${C.phone}`,
-      C.email && `EMAIL;TYPE=INTERNET:${C.email}`,
-      C.linkedin && `URL:${C.linkedin}`, C.scholar && `URL:${C.scholar}`,
-      note && `NOTE:${esc(note)}`,
-      "END:VCARD"
-    ].filter(Boolean).join("\r\n");
-    const url = URL.createObjectURL(new Blob([L], { type: "text/vcard;charset=utf-8" }));
-    const a = Object.assign(document.createElement("a"), { href: url, download: `${C.first}_${C.last}.vcf` });
-    document.body.appendChild(a); a.click(); a.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
-  });
-</script>
-</body>
-</html>
+  .degrees { margin: 6px 0 0; color: var(--muted); font-size: 13px; font-weight: 500; text-wrap: balance; line-height
