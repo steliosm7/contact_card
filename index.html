@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;800&display=swap" rel="stylesheet">
 <style>
-:root {
+  :root {
     color-scheme: dark;
     --bg: #010305; 
     --surface: #02070A; 
@@ -44,7 +44,6 @@
     -webkit-font-smoothing: antialiased;
   }
   
-  /* glow: αλλάζει το rgba αν αλλάξεις το --accent */
   body::before {
     content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
     background:
@@ -82,7 +81,7 @@
   h1 { margin: 0; font-size: 22px; line-height: 1.2; font-weight: 800; letter-spacing: -.02em; }
   .role { margin: 8px 0 0; color: var(--accent); font-size: 14px; font-weight: 600; text-wrap: balance; line-height: 1.4; }
   .degrees { margin: 6px 0 0; color: var(--muted); font-size: 13px; font-weight: 500; text-wrap: balance; line-height: 1.4; }
-  .uni { margin: 2px 0 0; color: var(--muted); font-size: 12px; }
+  .uni { margin: 2px 0 0; color: var(--muted); font-size: 12px; opacity: .7; }
 
   .actions { display: grid; grid-template-columns: 1fr 52px; gap: 8px; margin: 22px 0 8px; }
   .save, .share {
@@ -210,7 +209,6 @@
       </span>
     </a></li>`).join("");
 
-  // vCard: escape \ , ; so imports don't truncate fields
   const esc = s => String(s).replace(/([\\,;])/g, "\\$1");
 
   $("save").addEventListener("click", () => {
@@ -231,7 +229,6 @@
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   });
 
-  // Share: native share sheet, αλλιώς αντιγραφή link
   $("share").addEventListener("click", async () => {
     const url = location.origin + location.pathname;
     try {
@@ -240,7 +237,7 @@
       const ico = $("shareIco"), old = ico.innerHTML;
       ico.innerHTML = '<path d="m5 12 5 5 9-10"/>';
       setTimeout(() => ico.innerHTML = old, 1500);
-    } catch (e) { /* ακύρωση από τον χρήστη */ }
+    } catch (e) { }
   });
 </script>
 </body>
