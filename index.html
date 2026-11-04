@@ -183,7 +183,7 @@
   const rows = [
     C.phone    && { k: "phone",    label: "Mobile", text: C.phone, href: "tel:" + C.phone.replace(/\s/g, "") },
     C.email    && { k: "mail",     label: "Email",  text: C.email, href: "mailto:" + C.email },
-    C.linkedin && { k: "linkedin", label: "",       text: C.linkedin.replace(/^https?:\/\/(www\.)?/, ""), href: C.linkedin, ext: true },
+    C.linkedin && { k: "linkedin", label: "LinkedIn",       text: C.linkedin.replace(/^https?:\/\/(www\.)?/, ""), href: C.linkedin, ext: true },
     C.scholar  && { k: "scholar",  label: "Google Scholar", text: "Publications", href: C.scholar, ext: true }
   ].filter(Boolean);
 
