@@ -6,10 +6,10 @@
 <meta name="theme-color" content="#010305">
 <meta name="robots" content="noindex, nofollow">
 <title>Stylianos Miliarakis</title>
-<meta name="description" content="Head of Portfolio Management &amp; Trading — digital contact card">
+<meta name="description" content="Head of Portfolio Management & Trading — digital contact card">
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Stylianos Miliarakis">
-<meta property="og:description" content="Head of Portfolio Management &amp; Trading — digital contact card">
+<meta property="og:description" content="Head of Portfolio Management & Trading — digital contact card">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;800&display=swap" rel="stylesheet">
@@ -38,15 +38,25 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100dvh;
+    min-height: 100vh;
+    min-height: 100svh;
     padding: max(20px, env(safe-area-inset-top)) 0 max(20px, env(safe-area-inset-bottom)) 0;
     -webkit-font-smoothing: antialiased;
   }
   
+  /* glow: αλλάζει το rgba αν αλλάξεις το --accent */
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(60% 45% at 50% 0%, rgba(2,151,222,.20), transparent 70%),
+      radial-gradient(50% 35% at 50% 100%, rgba(2,151,222,.08), transparent 70%);
+  }
   .card {
     width: calc(100% - 40px);
     max-width: 340px;
-    margin: 0px auto;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 24px;
@@ -64,7 +74,7 @@
     color: var(--accent);
     background: var(--bg);
     border: 2px solid var(--accent);
-    box-shadow: 0 0 0 6px var(--surface), 0 0 0 7px var(--line);
+    box-shadow: 0 0 0 6px var(--surface), 0 0 0 7px var(--line), 0 0 32px rgba(2,151,222,.28);
     overflow: hidden;
     margin: 4px auto 24px auto;
   }
@@ -74,20 +84,19 @@
   .degrees { margin: 6px 0 0; color: var(--muted); font-size: 13px; font-weight: 500; text-wrap: balance; line-height: 1.4; }
   .uni { margin: 2px 0 0; color: var(--muted); font-size: 12px; }
 
-  .save {
-    margin: 24px 0 12px;
-    width: 100%;
+  .actions { display: grid; grid-template-columns: 1fr 52px; gap: 8px; margin: 22px 0 8px; }
+  .save, .share {
     display: flex; align-items: center; justify-content: center; gap: 8px;
-    padding: 14px 20px;
-    border: 0; border-radius: 16px;
-    background: var(--accent); color: var(--accent-ink);
+    border-radius: 16px; cursor: pointer;
     font: 700 15px "Manrope", sans-serif;
-    cursor: pointer;
-    transition: transform .15s ease, filter .15s ease;
+    transition: transform .15s ease, filter .15s ease, border-color .15s ease;
   }
+  .save { padding: 14px 20px; border: 0; background: var(--accent); color: var(--accent-ink); }
   .save:hover { filter: brightness(1.08); }
-  .save:active { transform: scale(.98); }
-  .save svg { width: 18px; height: 18px; }
+  .share { border: 1px solid var(--line); background: transparent; color: var(--text); }
+  .share:hover { border-color: var(--accent); color: var(--accent); }
+  .save:active, .share:active { transform: scale(.97); }
+  .save svg, .share svg { width: 18px; height: 18px; }
 
   .links { list-style: none; margin: 8px 0 0; padding: 0; text-align: left; }
   .links li + li { border-top: 1px solid var(--line); }
@@ -111,7 +120,7 @@
 
   a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 12px; }
   @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
-  @media (prefers-reduced-motion: reduce) { .card { animation: none; } .save { transition: none; } }
+  @media (prefers-reduced-motion: reduce) { .card { animation: none; } .save, .share { transition: none; } }
 </style>
 </head>
 <body>
@@ -123,10 +132,15 @@
   <p class="degrees" id="degrees"></p>
   <p class="uni" id="uni"></p>
 
-  <button class="save" id="save" type="button">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg>
-    Save Contact
-  </button>
+  <div class="actions">
+    <button class="save" id="save" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg>
+      Save Contact
+    </button>
+    <button class="share" id="share" type="button" aria-label="Share">
+      <svg id="shareIco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M12 15V4"/><path d="m8 8 4-4 4 4"/></svg>
+    </button>
+  </div>
 
   <ul class="links" id="links"></ul>
 </main>
@@ -183,7 +197,7 @@
   const rows = [
     C.phone    && { k: "phone",    label: "Mobile", text: C.phone, href: "tel:" + C.phone.replace(/\s/g, "") },
     C.email    && { k: "mail",     label: "Email",  text: C.email, href: "mailto:" + C.email },
-    C.linkedin && { k: "linkedin", label: "LinkedIn",       text: C.linkedin.replace(/^https?:\/\/(www\.)?/, ""), href: C.linkedin, ext: true },
+    C.linkedin && { k: "linkedin", label: "",       text: C.linkedin.replace(/^https?:\/\/(www\.)?/, ""), href: C.linkedin, ext: true },
     C.scholar  && { k: "scholar",  label: "Google Scholar", text: "Publications", href: C.scholar, ext: true }
   ].filter(Boolean);
 
@@ -215,6 +229,18 @@
     const a = Object.assign(document.createElement("a"), { href: url, download: `${C.first}_${C.last}.vcf` });
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
+  });
+
+  // Share: native share sheet, αλλιώς αντιγραφή link
+  $("share").addEventListener("click", async () => {
+    const url = location.origin + location.pathname;
+    try {
+      if (navigator.share) { await navigator.share({ title: fullName, text: `${fullName} — ${C.title}`, url }); return; }
+      await navigator.clipboard.writeText(url);
+      const ico = $("shareIco"), old = ico.innerHTML;
+      ico.innerHTML = '<path d="m5 12 5 5 9-10"/>';
+      setTimeout(() => ico.innerHTML = old, 1500);
+    } catch (e) { /* ακύρωση από τον χρήστη */ }
   });
 </script>
 </body>
