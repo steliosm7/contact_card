@@ -1,5 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#050505">
+<meta name="robots" content="noindex, nofollow">
+<title>Stylianos Miliarakis</title>
+<meta name="description" content="Head of Portfolio Management & Trading — digital contact card">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Stylianos Miliarakis">
+<meta property="og:description" content="Head of Portfolio Management & Trading — digital contact card">
+<!-- og:image needs the FULL url of the photo (replace with your GitHub Pages address) -->
+<meta property="og:image" content="https://steliosm.github.io/contact/s_image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+:root {
+    color-scheme: dark;
+    --bg: #050505;
+    --surface: #121212;
+    --line: #262626;
+    --text: #ffffff;
+    --muted: #8e8e93;
+    --accent: #ffffff;
+    --accent-ink: #000000;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; overflow-x: hidden; }
+  body {
+    font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: max(20px, env(safe-area-inset-top)) 0 max(20px, env(safe-area-inset-bottom)) 0;
+    -webkit-font-smoothing: antialiased;
+  }
+
+body::before {
+    content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(60% 45% at 50% 0%, rgba(255,255,255,.07), transparent 70%),
+      radial-gradient(50% 35% at 50% 100%, rgba(255,255,255,.03), transparent 70%);
+  }
+  .card {
+    width: calc(100% - 40px);
+    max-width: 340px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 32px 20px 16px;
+    animation: rise .6s cubic-bezier(.2,.7,.2,1) both;
+    text-align: center;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  }
+
+  /* 3 — metallic shine sweep (once) */
+  .card::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 2;
+    background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,.14) 50%, transparent 65%);
+    transform: translateX(-120%);
+    animation: shine 1.4s cubic-bezier(.3,.6,.2,1) .7s 1 forwards;
+  }
+
+  .avatar {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-weight: 800; font-size: 26px; letter-spacing: .02em;
+    color: var(--accent);
+    background: var(--bg);
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 0 6px var(--surface), 0 0 0 7px var(--line), 0 0 32px rgba(255,255,255,.12);
+    overflow: hidden;
+    margin: 4px auto 24px auto;
+  }
+  .avatar img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    filter: grayscale(1) contrast(1.05);
+  }
+  h1 { margin: 0; font-size: 22px; line-height: 1.2; font-weight: 800; letter-spacing: -.02em; }
+  .role { margin: 8px 0 0; color: var(--accent); font-size: 14px; font-weight: 600; text-wrap: balance; line-height: 1.4; }
+  .degrees { margin: 6px 0 0; color: var(--muted); font-size: 13px; font-weight: 500; text-wrap: balance; line-height: 1.4; }
+  .uni { margin: 2px 0 0; color: var(--muted); font-size: 12px; opacity: .7; }
+
+  .actions { display: grid; grid-template-columns: 1fr 52px; gap: 8px; margin: 22px 0 8px; }
+  .save, .share {
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    border-radius: 16px; cursor: pointer;
+    font: 700 15px "Manrope", sans-serif;
+    transition: transform .15s ease, filter .15s ease, border-color .15s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .save { padding: 14px 20px; border: 0; background: var(--accent); color: var(--accent-ink); }
+  .save:hover { filter: brightness(1.08); }
+  .share { border: 1px solid var(--line); background: transparent; color: var(--text); }
+  .share:hover { border-color: var(--accent); color: var(--accent); }
+  .save:active, .share:active { transform: scale(.97); }
+  .save svg, .share svg { width: 18px; height: 18px; }
+
+  /* 5 — ripple */
+  .ripple {
+    position: absolute; border-radius: 50%; pointer-events: none;
+    width: 20px; height: 20px; margin: -10px 0 0 -10px;
+    background: rgba(0,0,0,.28);
+    transform: scale(0); opacity: 1;
+    animation: ripple .6s ease-out forwards;
+  }
+  .share .ripple { background: rgba(255,255,255,.25); }
+
+  .links { list-style: none; margin: 8px 0 0; padding: 0; text-align: left; }
+  .links li + li { border-top: 1px solid var(--line); }
+  /* 1 — staggered entrance */
+  .links li {
+    opacity: 0;
+    animation: rowIn .5s cubic-bezier(.2,.7,.2,1) forwards;
+    animation-delay: calc(.35s + var(--i, 0) * .09s);
+  }
+  .links a {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 4px;
+    color: var(--text); text-decoration: none;
+    transition: color .15s ease;
+    width: 100%;
+  }
+  .links a:hover { color: var(--accent); }
+  .ico {
+    flex: none; width: 38px; height: 38px;
+    border-radius: 12px; background: var(--bg); border: 1px solid var(--line);
+    display: grid; place-items: center; color: var(--accent);
+  }
+  .ico svg { width: 18px; height: 18px; }
+  .meta { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+  .meta small { color: var(--muted); font-size: 12px; font-weight: 500; }
+  .meta span { font-size: 14px; font-weight: 600; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 100%; }
+
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 12px; }
+
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  @keyframes rowIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @keyframes shine { to { transform: translateX(120%); } }
+  @keyframes ripple { to { transform: scale(18); opacity: 0; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card { animation: none; }
+    .card::after { animation: none; display: none; }
+    .links li { animation: none; opacity: 1; }
+    .ripple { display: none; }
+    .save, .share { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<main class="card">
+  <div class="avatar" id="avatar"></div>
+  <h1 id="name"></h1>
+  <p class="role" id="role"></p>
+  <p class="degrees" id="degrees"></p>
+  <p class="uni" id="uni"></p>
+
+  <div class="actions">
+    <button class="save" id="save" type="button">
+      <svg id="saveIco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg>
+      <span id="saveLabel">Save Contact</span>
+    </button>
+    <button class="share" id="share" type="button" aria-label="Share">
+      <svg id="shareIco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M12 15V4"/><path d="m8 8 4-4 4 4"/></svg>
+    </button>
+  </div>
+
+  <ul class="links" id="links"></ul>
+</main>
+
 <script>
-  /* ====== PASTE YOUR REAL VALUES HERE ====== */
   const C = {
     first: "Stylianos",
     last: "Miliarakis",
@@ -8,15 +192,12 @@
     degrees: "Electrical and Computer Engineer, MSc, MBA",
     uni: "NTUA",
     photo: "s_image.jpg",
-    // Το τηλέφωνο και το email είναι πλέον κρυπτογραφημένα (Base64) για προστασία από bots
     phoneBase64: "KzMwIDY5NyA3NjggMjk2Mw==",
     emailBase64: "c3RlbGlvc203N0BnbWFpbC5jb20=",
     linkedin: "https://www.linkedin.com/in/steliosm",
     scholar: "https://scholar.google.com/citations?user=LXHbzJsAAAAJ&hl=el"
   };
-  /* ======================================================================== */
 
-  // Αποκρυπτογράφηση των στοιχείων την ώρα που φορτώνει η σελίδα (atob)
   C.phone = atob(C.phoneBase64);
   C.email = atob(C.emailBase64);
 
@@ -41,7 +222,6 @@
   );
   document.head.appendChild(fav);
 
-  /* Avatar: photo with initials fallback if the image fails to load */
   $("avatar").textContent = initials;
   if (C.photo) {
     const img = new Image();
@@ -50,7 +230,6 @@
     img.src = C.photo;
   }
 
-  /* Pre-load a small (256px, square-cropped) copy of the photo for the vCard */
   let photoData = null;
   (async () => {
     if (!C.photo) return;
@@ -89,7 +268,6 @@
       </span>
     </a></li>`).join("");
 
-  /* Ripple on both buttons */
   function addRipple(btn, e) {
     const r = btn.getBoundingClientRect();
     const el = document.createElement("span");
@@ -126,7 +304,6 @@
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
 
-    /* confirmation: icon -> check, label -> Saved */
     const ico = $("saveIco"), label = $("saveLabel");
     ico.innerHTML = ICON_CHECK; label.textContent = "Saved";
     setTimeout(() => { ico.innerHTML = ICON_DOWNLOAD; label.textContent = "Save Contact"; }, 1800);
@@ -143,3 +320,5 @@
     } catch (e) { }
   });
 </script>
+</body>
+</html>
