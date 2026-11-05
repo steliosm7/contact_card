@@ -182,7 +182,7 @@ body::before {
 
 <script>
   
-  const C = {
+const C = {
     first: "Stylianos",
     last: "Miliarakis",
     title: "Head of Portfolio Management & Trading",
@@ -190,12 +190,11 @@ body::before {
     degrees: "Electrical and Computer Engineer, MSc, MBA",
     uni: "NTUA",
     photo: "s_image.jpg",
-    phoneBase64: "KzMwIDY5NyA3NjggMjk2Mw==",
-    emailBase64: "c3RlbGlvc203N0BnbWFpbC5jb20=",
+    phone: atob("KzMwIDY5NyA3NjggMjk2Mw=="), 
+    email: atob("c3RlbGlvc203N0BnbWFpbC5jb20="),
     linkedin: "https://www.linkedin.com/in/steliosm",
     scholar: "https://scholar.google.com/citations?user=LXHbzJsAAAAJ&hl=el"
   };
-  /* ======================================================================== */
 
   C.phone = atob(C.phoneBase64);
   C.email = atob(C.emailBase64);
