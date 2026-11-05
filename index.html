@@ -14,15 +14,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;800&display=swap" rel="stylesheet">
 <style>
-  :root {
+:root {
     color-scheme: dark;
-    --bg: #010305; 
-    --surface: #02070A; 
-    --line: #16242e; 
-    --text: #ffffff; 
-    --muted: #7a8b99;
-    --accent: #0297DE;
-    --accent-ink: #ffffff;
+    --bg: #050505;      
+    --surface: #121212;   
+    --line: #262626;   
+    --text: #ffffff;     
+    --muted: #8e8e93;    
+    --accent: #ffffff;    
+    --accent-ink: #000000;
   }
   * { box-sizing: border-box; }
   html, body { 
@@ -44,11 +44,11 @@
     -webkit-font-smoothing: antialiased;
   }
   
-  body::before {
+body::before {
     content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
     background:
-      radial-gradient(60% 45% at 50% 0%, rgba(2,151,222,.20), transparent 70%),
-      radial-gradient(50% 35% at 50% 100%, rgba(2,151,222,.08), transparent 70%);
+      radial-gradient(60% 45% at 50% 0%, rgba(255,255,255,.07), transparent 70%),
+      radial-gradient(50% 35% at 50% 100%, rgba(255,255,255,.03), transparent 70%);
   }
   .card {
     width: calc(100% - 40px);
@@ -73,7 +73,7 @@
     color: var(--accent);
     background: var(--bg);
     border: 2px solid var(--accent);
-    box-shadow: 0 0 0 6px var(--surface), 0 0 0 7px var(--line), 0 0 32px rgba(2,151,222,.28);
+    box-shadow: 0 0 0 6px var(--surface), 0 0 0 7px var(--line), 0 0 32px rgba(255,255,255,.12);
     overflow: hidden;
     margin: 4px auto 24px auto;
   }
