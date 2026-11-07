@@ -231,7 +231,7 @@ body::before {
     img.src = C.photo;
   }
 
-  let photoData = null;
+    let photoData = null;
   (async () => {
     if (!C.photo) return;
     try {
@@ -246,6 +246,19 @@ body::before {
     } catch (e) { photoData = null; }
   })();
 
+  $("name").textContent = fullName;
+  $("role").textContent = C.org ? `${C.title} · ${C.org}` : C.title;
+  $("degrees").textContent = C.degrees || "";
+  $("uni").textContent = C.uni || "";
+  if (!C.degrees) $("degrees").remove();
+  if (!C.uni) $("uni").remove();
+
+  const rows = [
+    C.phone    && { k: "phone",    label: "Mobile", text: C.phone, href: "tel:" + C.phone.replace(/\s/g, "") },
+    C.email    && { k: "mail",     label: "Email",  text: C.email, href: "mailto:" + C.email },
+    C.linkedin && { k: "linkedin", label: "Linkedin",       text: C.linkedin.replace(/^https?:\/\/(www\.)?/, ""), href: C.linkedin, ext: true },
+    C.scholar  && { k: "scholar",  label: "Google Scholar", text: "Publications", href: C.scholar, ext: true }
+  ].filter(Boolean);
   $("name").textContent = fullName;
   $("role").textContent = C.org ? `${C.title} · ${C.org}` : C.title;
   $("degrees").textContent = C.degrees || "";
